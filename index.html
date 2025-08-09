@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfolio • Your Name</title>
+  <title>Portfolio • Alexandre Babeanu</title>
   <meta name="description" content="A fast, single‑file portfolio to showcase projects, skills, and contact info." />
   <meta property="og:title" content="Portfolio • Alexandre Babeanu" />
   <meta property="og:description" content="A fast, single‑file portfolio to showcase projects, skills, and contact info." />
@@ -19,9 +19,24 @@
     :root[data-theme='light']{
       --bg:#fafafa; --bg-soft:#ffffff; --card:#ffffff; --txt:#0b0c10; --muted:#5c6270; --acc:#335cff; --ring:#e8ecf7;
     }
+    /* Manual light theme (wins when you click the toggle) */
+    :root[data-theme='light']{
+      --bg:#fafafa; --bg-soft:#ffffff; --card:#ffffff; --txt:#0b0c10; --muted:#5c6270; --acc:#335cff; --ring:#e8ecf7;
+    }
+    html[data-theme='light'] body{
+      background-image: radial-gradient(40rem 40rem at 10% -10%, #e8edff 0, transparent 60%),
+                        radial-gradient(30rem 30rem at 110% 0, #ffe9f2 0, transparent 50%);
+    }
+
+    /* Only apply OS preference if no manual theme has been set */
     @media (prefers-color-scheme: light){
-      :root{ --bg:#fafafa; --bg-soft:#ffffff; --card:#ffffff; --txt:#0b0c10; --muted:#5c6270; --acc:#335cff; --ring:#e8ecf7; }
-      body{ background-image: radial-gradient(40rem 40rem at 10% -10%, #e8edff 0, transparent 60%), radial-gradient(30rem 30rem at 110% 0, #ffe9f2 0, transparent 50%); }
+      :root:not([data-theme]){
+      --bg:#fafafa; --bg-soft:#ffffff; --card:#ffffff; --txt:#0b0c10; --muted:#5c6270; --acc:#335cff; --ring:#e8ecf7;
+    }
+    html:not([data-theme]) body{
+      background-image: radial-gradient(40rem 40rem at 10% -10%, #e8edff 0, transparent 60%),
+                        radial-gradient(30rem 30rem at 110% 0, #ffe9f2 0, transparent 50%);
+    }
     }
     *{ box-sizing:border-box }
     html,body{ height:100% }
