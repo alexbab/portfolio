@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio • Your Name</title>
   <meta name="description" content="A fast, single‑file portfolio to showcase projects, skills, and contact info." />
-  <meta property="og:title" content="Portfolio • Your Name" />
+  <meta property="og:title" content="Portfolio • Alexandre Babeanu" />
   <meta property="og:description" content="A fast, single‑file portfolio to showcase projects, skills, and contact info." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="" />
@@ -14,6 +14,10 @@
     :root{
       --bg: #0b0b0c; --bg-soft:#121216; --card:#16171b; --txt:#e7e9ee; --muted:#a2a7b7; --acc:#7c9cff; --ring: #2b2f3a;
       --shadow: 0 10px 30px rgba(0,0,0,.25), 0 6px 12px rgba(0,0,0,.15);
+    }
+    /* Light theme override for toggle */
+    :root[data-theme='light']{
+      --bg:#fafafa; --bg-soft:#ffffff; --card:#ffffff; --txt:#0b0c10; --muted:#5c6270; --acc:#335cff; --ring:#e8ecf7;
     }
     @media (prefers-color-scheme: light){
       :root{ --bg:#fafafa; --bg-soft:#ffffff; --card:#ffffff; --txt:#0b0c10; --muted:#5c6270; --acc:#335cff; --ring:#e8ecf7; }
@@ -80,7 +84,7 @@
       <nav>
         <a class="brand" href="#top" aria-label="Home">
           <span class="badge">∎</span>
-          <strong>Your Name</strong>
+          <strong>Alexandre Babeanu</strong>
         </a>
         <div class="links">
           <a href="#projects">Projects</a>
@@ -97,8 +101,7 @@
       <div>
         <span class="pill">Availability: <strong style="margin-left:6px">Open for projects</strong></span>
         <h1>Audio Producer & Sound Designer crafting immersive stories for podcasts, film and brands.</h1>
-        <p>Quick‑install portfolio. One HTML file. Easy to host anywhere (GitHub Pages, Netlify, OVH, your WordPress theme as a static page, etc.). Edit the JSON below to add projects.</p>
-        <div class="cta">
+        <p>This portfolio is a streamlined showcase of my audio and creative work. It presents a curated selection of projects, my professional background.</p>p>
           <a class="btn" href="#projects">See work ↓</a>
           <a class="btn" href="#contact">Get in touch</a>
         </div>
@@ -201,16 +204,18 @@
     // Year
     $('#year').textContent = new Date().getFullYear();
 
-    // Theme toggle
+    // Theme toggle (restored, with persistence)
     const themeBtn = $('#themeToggle');
     const saved = localStorage.getItem('theme');
-    if(saved){ document.documentElement.dataset.theme = saved; if(saved==='light') themeBtn.textContent='☀️'; }
-    themeBtn.addEventListener('click', ()=>{
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const initial = saved || (prefersLight ? 'light' : 'dark');
+    document.documentElement.dataset.theme = initial;
+    if(themeBtn){ themeBtn.textContent = initial==='light' ? '☀️' : '🌙'; }
+
+    themeBtn?.addEventListener('click', ()=>{
       const cur = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
-      document.documentElement.dataset.theme = cur; themeBtn.textContent = cur==='light' ? '☀️' : '🌙';
-      if(cur==='light'){
-        document.documentElement.style.setProperty('--bg','#fafafa');
-      }
+      document.documentElement.dataset.theme = cur;
+      themeBtn.textContent = cur==='light' ? '☀️' : '🌙';
       localStorage.setItem('theme', cur);
     });
 
