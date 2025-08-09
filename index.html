@@ -220,19 +220,24 @@
     $('#year').textContent = new Date().getFullYear();
 
     // Theme toggle (restored, with persistence)
-    const themeBtn = $('#themeToggle');
+     const themeBtn = document.getElementById('themeToggle');
+
+    // Determine initial theme: saved → OS preference → default dark
     const saved = localStorage.getItem('theme');
     const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
     const initial = saved || (prefersLight ? 'light' : 'dark');
-    document.documentElement.dataset.theme = initial;
-    if(themeBtn){ themeBtn.textContent = initial==='light' ? '☀️' : '🌙'; }
 
-    themeBtn?.addEventListener('click', ()=>{
-      const cur = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
-      document.documentElement.dataset.theme = cur;
-      themeBtn.textContent = cur==='light' ? '☀️' : '🌙';
-      localStorage.setItem('theme', cur);
+    document.documentElement.setAttribute('data-theme', initial);
+      if (themeBtn) themeBtn.textContent = initial === 'light' ? '☀️' : '🌙';
+
+    themeBtn?.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      themeBtn.textContent = next === 'light' ? '☀️' : '🌙';
     });
+
 
     // Render projects
     const data = JSON.parse($('#project-data').textContent);
