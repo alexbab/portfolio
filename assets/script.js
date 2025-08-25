@@ -1,117 +1,114 @@
 /* ==========================================================================
-   Portfolio Script — Alexandre Babeanu
+   Portfolio Script — i18n Edition (EN/FR)
    --------------------------------------------------------------------------
    TABLE OF CONTENTS
    1) DOM HELPERS & CONSTANTS
    2) FOOTER YEAR
-   3) THEME TOGGLE (WITH PERSISTENCE)
-   4) PROJECT CARD RENDERING
-   5) FILTERS (BUILD + APPLY)
-   6) DATA LOADING (project-data.json)
-   7) INIT
+   3) I18N CORE (state, load, apply)
+   4) LANGUAGE TOGGLE BUTTON
+   5) PROJECT CARD RENDERING
+   6) FILTERS (BUILD + APPLY)
+   7) DATA LOADING BY LANGUAGE
+   8) INIT
    ========================================================================== */
 
+/* 1) DOM HELPERS & CONSTANTS */
+const $  = (q, el=document) => el.querySelector(q);
+const $$ = (q, el=document) => [...el.querySelectorAll(q)];
 
-/* ==========================================================================
-   1) DOM HELPERS & CONSTANTS
-   -------------------------------------------------------------------------- */
+const cards    = $('#cards');
+const tpl      = $('#card-tpl');
+const filters  = $('#filters');
+const langBtn  = $('#langToggle');
 
-/** Shorthand querySelector */
-const $ = (q, el = document) => el.querySelector(q);
-/** Shorthand querySelectorAll (returns Array) */
-const $$ = (q, el = document) => [...el.querySelectorAll(q)];
+const SUPPORTED = ['en','fr'];
+const DEFAULT_LANG = 'en';
 
-const cards   = $('#cards');
-const tpl     = $('#card-tpl');
-const filters = $('#filters');
-const themeBtn = $('#themeToggle');
+/* 2) FOOTER YEAR */
+(() => { const y = $('#year'); if (y) y.textContent = String(new Date().getFullYear()); })();
 
+/* 3) I18N CORE (state, load, apply) */
+const i18n = {
+  lang: null,
+  dict: {},
 
-/* ==========================================================================
-   2) FOOTER YEAR
-   -------------------------------------------------------------------------- */
+  detect() {
+    const saved = localStorage.getItem('lang');
+    if (saved && SUPPORTED.includes(saved)) return saved;
+    const n = (navigator.language || 'en').toLowerCase();
+    return n.startsWith('fr') ? 'fr' : 'en';
+  },
 
-(() => {
-  const yearEl = $('#year');
-  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
-})();
+  async load(lang) {
+    const url = `assets/i18n/${lang}.json`;
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`i18n HTTP ${res.status}`);
+    this.dict = await res.json();
+    this.lang = lang;
+  },
 
+  t(key) {
+    return this.dict[key] ?? key; // fallback: show key if missing
+  },
 
-/* ==========================================================================
-   3) THEME TOGGLE (WITH PERSISTENCE)
-   --------------------------------------------------------------------------
-   - Respects saved preference in localStorage
-   - Falls back to OS preference if none saved
-   - Toggles icon (☀️ / 🌙)
-   ========================================================================== */
+  apply() {
+    $$('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (!key) return;
+      el.textContent = this.t(key);
+    });
+  }
+};
 
-(() => {
-  const saved = localStorage.getItem('theme');
-  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-  const initial = saved || (prefersLight ? 'light' : 'dark');
+/* 4) LANGUAGE TOGGLE BUTTON */
+function updateLangButton() {
+  if (!langBtn) return;
+  // Show the *other* language on the button (click to switch)
+  langBtn.textContent = i18n.lang === 'fr' ? 'EN' : 'FR';
+  langBtn.setAttribute('aria-label', i18n.lang === 'fr' ? 'Switch to English' : 'Passer en français');
+}
 
-  document.documentElement.setAttribute('data-theme', initial);
-  if (themeBtn) themeBtn.textContent = initial === 'light' ? '☀️' : '🌙';
+langBtn?.addEventListener('click', async () => {
+  const next = i18n.lang === 'fr' ? 'en' : 'fr';
+  await switchLanguage(next);
+});
 
-  themeBtn?.addEventListener('click', () => {
-    const current = document.documentElement.getAttribute('data-theme') || 'dark';
-    const next = current === 'light' ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    if (themeBtn) themeBtn.textContent = next === 'light' ? '☀️' : '🌙';
-  });
-})();
+async function switchLanguage(lang) {
+  try {
+    await i18n.load(lang);
+    localStorage.setItem('lang', lang);
+    i18n.apply();
+    updateLangButton();
 
+    // Reload projects in the chosen language
+    const projects = await loadProjects(lang);
+    buildFilters(projects);
+    render(projects);
+  } catch (e) {
+    console.error('Language switch failed:', e);
+  }
+}
 
-/* ==========================================================================
-   4) PROJECT CARD RENDERING
-   --------------------------------------------------------------------------
-   render(projects: Array<Project>)
-   - Creates cards from <template id="card-tpl">
-   - Populates image, title, description, tags, and action links
-   - Keeps DOM writes batched via DocumentFragment
-   ========================================================================== */
-
-/**
- * @typedef {Object} Project
- * @property {string} title
- * @property {string} description
- * @property {string} [image]
- * @property {string[]} [tags]
- * @property {Record<string,string>} [links] - { Label: URL }
- */
-
-/**
- * Render a list of projects into the grid.
- * @param {Project[]} list
- */
-function render(list) {
+/* 5) PROJECT CARD RENDERING */
+function render(list){
   if (!cards || !tpl) return;
   cards.innerHTML = '';
-
   const frag = document.createDocumentFragment();
 
   list.forEach(p => {
     const node = tpl.content.cloneNode(true);
-
-    // Image
     const img = node.querySelector('img');
     if (img) {
       img.src = p.image || '';
       img.alt = (p.title || 'Project') + ' cover';
-      // Hint to browser to avoid layout shift
-      img.setAttribute('loading', 'lazy');
-      img.setAttribute('decoding', 'async');
+      img.loading = 'lazy';
+      img.decoding = 'async';
     }
+    const h3 = node.querySelector('h3');
+    if (h3) h3.textContent = p.title || '';
+    const desc = node.querySelector('.desc');
+    if (desc) desc.textContent = p.description || '';
 
-    // Text
-    const titleEl = node.querySelector('h3');
-    if (titleEl) titleEl.textContent = p.title || '';
-
-    const descEl = node.querySelector('.desc');
-    if (descEl) descEl.textContent = p.description || '';
-
-    // Tags
     const chips = node.querySelector('.chips');
     if (chips) {
       (p.tags || []).forEach(t => {
@@ -122,14 +119,11 @@ function render(list) {
       });
     }
 
-    // Actions
     const actions = node.querySelector('.actions');
     if (actions) {
       Object.entries(p.links || {}).forEach(([label, href]) => {
         const a = document.createElement('a');
-        a.href = href;
-        a.target = '_blank';
-        a.rel = 'noopener';
+        a.href = href; a.target = '_blank'; a.rel = 'noopener';
         a.textContent = label;
         actions.appendChild(a);
       });
@@ -141,90 +135,61 @@ function render(list) {
   cards.appendChild(frag);
 }
 
-
-/* ==========================================================================
-   5) FILTERS (BUILD + APPLY)
-   --------------------------------------------------------------------------
-   - Extract unique tags from dataset
-   - Build clickable buttons (+ active state)
-   - Apply filter to re-render matching projects
-   ========================================================================== */
-
-/**
- * Build filter buttons from projects and set initial state.
- * @param {Project[]} projects
- */
-function buildFilters(projects) {
+/* 6) FILTERS (BUILD + APPLY) */
+function buildFilters(projects){
   if (!filters) return;
 
-  // Collect unique tags
   const allTags = new Set();
   projects.forEach(p => (p.tags || []).forEach(t => allTags.add(t)));
 
-  // Clear then build
   filters.innerHTML = '';
   const makeBtn = (label) => Object.assign(document.createElement('button'), { textContent: label });
 
-  const tags = ['All', ...allTags];
-  const filterButtons = tags.map(tag => {
+  const allLabel = i18n.t('filters.all');
+  const tags = [allLabel, ...allTags];
+  const buttons = tags.map(tag => {
     const b = makeBtn(tag);
-    b.addEventListener('click', () => applyFilter(tag, filterButtons, projects));
+    b.addEventListener('click', ()=> applyFilter(tag, buttons, projects, allLabel));
     filters.appendChild(b);
     return b;
   });
-
-  // Initial state: show all
-  filterButtons[0]?.classList.add('active');
+  buttons[0].classList.add('active');
 }
 
-/**
- * Apply a tag filter and update active button styles.
- * @param {string} tag
- * @param {HTMLButtonElement[]} buttons
- * @param {Project[]} projects
- */
-function applyFilter(tag, buttons, projects) {
+function applyFilter(tag, buttons, projects, allLabel){
   buttons.forEach(b => b.classList.toggle('active', b.textContent === tag));
-  if (tag === 'All') {
-    render(projects);
-  } else {
-    render(projects.filter(p => (p.tags || []).includes(tag)));
-  }
+  if (tag === allLabel) { render(projects); return; }
+  render(projects.filter(p => (p.tags || []).includes(tag)));
 }
 
+/* 7) DATA LOADING BY LANGUAGE */
+async function loadProjects(lang){
+  // Try language-specific file; fall back to EN; finally fall back to old single file.
+  const tryUrls = [
+    `assets/project-data.${lang}.json`,
+    'assets/project-data.en.json',
+    'assets/project-data.json'
+  ];
 
-/* ==========================================================================
-   6) DATA LOADING (project-data.json)
-   --------------------------------------------------------------------------
-   - Fetches JSON once
-   - Graceful fallback if fetch fails
-   ========================================================================== */
-
-/**
- * Load projects JSON from assets folder.
- * @returns {Promise<Project[]>}
- */
-async function loadProjects() {
-  try {
-    const res = await fetch('assets/project-data.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    return data.projects || [];
-  } catch (err) {
-    console.error('Failed to load project data:', err);
-    return [];
+  for (const url of tryUrls) {
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) continue;
+      const data = await res.json();
+      return data.projects || [];
+    } catch {}
   }
+  return [];
 }
 
+/* 8) INIT */
+(async function init(){
+  const startLang = i18n.detect();
+  await i18n.load(startLang);
+  i18n.apply();
+  updateLangButton();
 
-/* ==========================================================================
-   7) INIT
-   --------------------------------------------------------------------------
-   - Entry point: load data -> build filters -> render
-   ========================================================================== */
-
-(async function init() {
-  const projects = await loadProjects();
+  const projects = await loadProjects(startLang);
   buildFilters(projects);
   render(projects);
 })();
