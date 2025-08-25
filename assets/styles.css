@@ -124,6 +124,11 @@ nav{
   text-decoration:none;
   margin-left:18px;
 }
+
+.links a:last-child {
+  margin-right: 18px; /* adds right spacing only on the last link */
+}
+
 .links a:hover{ color:var(--txt) }
 
 
