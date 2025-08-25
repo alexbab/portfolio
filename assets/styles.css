@@ -1,20 +1,49 @@
+/* ==========================================================================
+   Portfolio Styles — Alexandre Babeanu
+   --------------------------------------------------------------------------
+   TABLE OF CONTENTS
+   1) CSS VARIABLES (THEME)
+   2) BASE / RESET
+   3) LAYOUT CONTAINERS
+   4) HEADER & NAV
+   5) BUTTONS, BADGE & PILLS
+   6) HERO SECTION
+   7) TYPOGRAPHY & UTILITIES
+   8) GRID & CARD COMPONENTS
+   9) FILTER CHIPS
+   10) ABOUT & LISTS
+   11) FOOTER & CTA
+   12) ACCESSIBILITY HELPERS
+   13) RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1) CSS VARIABLES (THEME)
+   --------------------------------------------------------------------------
+   - Dark theme defaults
+   - Manual light theme toggle via [data-theme='light']
+   - OS preference fallback when no manual theme is set
+   ========================================================================== */
+
 :root{
   --bg:#0b0b0c; --bg-soft:#121216; --card:#16171b; --txt:#e7e9ee; --muted:#a2a7b7; --acc:#7c9cff; --ring:#2b2f3a;
   --shadow: 0 10px 30px rgba(0,0,0,.25), 0 6px 12px rgba(0,0,0,.15);
 }
 
-/* Manual light theme toggle */
+/* Manual light theme (set by JS on <html data-theme="light">) */
 :root[data-theme='light']{
   --bg:#fafafa; --bg-soft:#ffffff; --card:#ffffff; --txt:#0b0c10; --muted:#5c6270; --acc:#335cff; --ring:#e8ecf7;
 }
 
+/* Decorative background only when light theme is active */
 html[data-theme='light'] body{
   background-image:
     radial-gradient(40rem 40rem at 10% -10%, #e8edff 0, transparent 60%),
     radial-gradient(30rem 30rem at 110% 0, #ffe9f2 0, transparent 50%);
 }
 
-/* OS preference if no manual theme */
+/* OS preference if no manual theme has been set */
 @media (prefers-color-scheme: light){
   :root:not([data-theme]){
     --bg:#fafafa; --bg-soft:#ffffff; --card:#ffffff; --txt:#0b0c10; --muted:#5c6270; --acc:#335cff; --ring:#e8ecf7;
@@ -26,98 +55,280 @@ html[data-theme='light'] body{
   }
 }
 
+
+/* ==========================================================================
+   2) BASE / RESET
+   --------------------------------------------------------------------------
+   - Box model & base font stack
+   - Default colors from CSS variables
+   ========================================================================== */
+
 *{ box-sizing:border-box }
 html,body{ height:100% }
+
 body{
   margin:0;
   font: 15px/1.6 Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Noto Color Emoji;
-  color:var(--txt); background:var(--bg);
+  color:var(--txt);
+  background:var(--bg);
 }
 
-.container{ max-width:1100px; margin:0 auto; padding:24px; }
+
+/* ==========================================================================
+   3) LAYOUT CONTAINERS
+   --------------------------------------------------------------------------
+   - Centralized width and padding for main content
+   ========================================================================== */
+
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:24px;
+}
+
+
+/* ==========================================================================
+   4) HEADER & NAV
+   --------------------------------------------------------------------------
+   - Sticky header with translucent backdrop
+   - Brand block & top-level navigation links
+   ========================================================================== */
 
 header{
-  position:sticky; top:0; z-index:10;
+  position:sticky;
+  top:0;
+  z-index:10;
   backdrop-filter: blur(10px);
   background: color-mix(in oklab, var(--bg), transparent 65%);
   border-bottom:1px solid var(--ring);
 }
 
-nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0; }
-.brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; }
-
-.badge{
-  width:36px; height:36px; display:grid; place-items:center;
-  background: linear-gradient(135deg, var(--acc), #a58cff);
-  color:white; border-radius:12px; box-shadow: var(--shadow); font-weight:700;
+nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:10px 0;
 }
 
-.links a{ color:var(--muted); text-decoration:none; margin-left:18px; }
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:inherit;
+}
+
+.links a{
+  color:var(--muted);
+  text-decoration:none;
+  margin-left:18px;
+}
 .links a:hover{ color:var(--txt) }
 
+
+/* ==========================================================================
+   5) BUTTONS, BADGE & PILLS
+   --------------------------------------------------------------------------
+   - Reusable .btn style
+   - Logo .badge and small label .pill
+   ========================================================================== */
+
 .btn{
-  appearance:none; border:1px solid var(--ring); background:var(--bg-soft);
-  color:var(--txt); padding:10px 14px; border-radius:12px; cursor:pointer; box-shadow:var(--shadow);
+  appearance:none;
+  border:1px solid var(--ring);
+  background:var(--bg-soft);
+  color:var(--txt);
+  padding:10px 14px;
+  border-radius:12px;
+  cursor:pointer;
+  box-shadow:var(--shadow);
 }
 .btn:hover{ filter:brightness(1.05) }
 
-.hero{
-  display:grid; grid-template-columns: 1.2fr .8fr; gap:26px; align-items:center; padding:32px 0 10px;
+.badge{
+  width:36px; height:36px;
+  display:grid; place-items:center;
+  background: linear-gradient(135deg, var(--acc), #a58cff);
+  color:white;
+  border-radius:12px;
+  box-shadow: var(--shadow);
+  font-weight:700;
 }
-.hero h1{ font-size: clamp(28px, 3.8vw, 44px); line-height:1.15; margin:0 0 10px }
-.hero p{ color:var(--muted); margin:0 0 18px }
 
 .pill{
-  display:inline-flex; gap:8px; align-items:center; border:1px solid var(--ring);
-  padding:6px 10px; border-radius:999px; color:var(--muted); font-size:12px;
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  border:1px solid var(--ring);
+  padding:6px 10px;
+  border-radius:999px;
+  color:var(--muted);
+  font-size:12px;
 }
 
-.hero-card{ background:var(--card); border:1px solid var(--ring); border-radius:20px; padding:16px; box-shadow:var(--shadow); }
-.avatar{
-  width:100%; aspect-ratio: 4/3; background: linear-gradient(135deg, #1f2430, #13151d 60%);
-  border-radius:16px; display:grid; place-items:center; color:#91a2ff; font-size:56px;
+
+/* ==========================================================================
+   6) HERO SECTION
+   --------------------------------------------------------------------------
+   - Two-column layout with an avatar card
+   ========================================================================== */
+
+.hero{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap:26px;
+  align-items:center;
+  padding:32px 0 10px;
 }
+
+.hero h1{
+  font-size: clamp(28px, 3.8vw, 44px);
+  line-height:1.15;
+  margin:0 0 10px;
+}
+
+.hero p{ color:var(--muted); margin:0 0 18px }
+
+.hero-card{
+  background:var(--card);
+  border:1px solid var(--ring);
+  border-radius:20px;
+  padding:16px;
+  box-shadow:var(--shadow);
+}
+
+.avatar{
+  width:100%;
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, #1f2430, #13151d 60%);
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  color:#91a2ff;
+  font-size:56px;
+}
+
+
+/* ==========================================================================
+   7) TYPOGRAPHY & UTILITIES
+   --------------------------------------------------------------------------
+   - Section spacing, headings, muted text
+   ========================================================================== */
 
 section{ padding:28px 0 }
-h2{ margin:0 0 14px; font-size: clamp(20px, 2vw, 26px) }
+
+h2{
+  margin:0 0 14px;
+  font-size: clamp(20px, 2vw, 26px);
+}
+
 .muted{ color:var(--muted) }
 
-.grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap:16px }
+
+/* ==========================================================================
+   8) GRID & CARD COMPONENTS
+   --------------------------------------------------------------------------
+   - 12-column grid
+   - Project cards: image, body, actions
+   ========================================================================== */
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap:16px;
+}
 
 .card{
-  grid-column: span 4; background:var(--card); border:1px solid var(--ring);
-  border-radius:18px; overflow:hidden; display:flex; flex-direction:column; box-shadow:var(--shadow);
+  grid-column: span 4;
+  background:var(--card);
+  border:1px solid var(--ring);
+  border-radius:18px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  box-shadow:var(--shadow);
 }
-.card img{ width:100%; height:180px; object-fit:cover; background:#0f1117 }
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  background:#0f1117;
+}
+
 .card .body{ padding:12px 14px 16px }
-.card h3{ margin:6px 0 4px; font-size:18px }
 
-.chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px }
-.chip{ font-size:12px; color:var(--muted); border:1px solid var(--ring); padding:6px 10px; border-radius:999px }
+.card h3{
+  margin:6px 0 4px;
+  font-size:18px;
+}
 
-.card .actions{ margin-top:auto; display:flex; gap:10px; padding:12px 14px; border-top:1px solid var(--ring) }
-.card .actions a{ flex:1; text-align:center; text-decoration:none; color:var(--txt); border:1px solid var(--ring); padding:10px 12px; border-radius:10px }
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:8px;
+}
 
-.filters{ display:flex; flex-wrap:wrap; gap:10px; margin:10px 0 18px }
-.filters button{ border:1px solid var(--ring); background:var(--bg-soft); color:var(--muted); padding:8px 12px; border-radius:999px; cursor:pointer }
+.chip{
+  font-size:12px;
+  color:var(--muted);
+  border:1px solid var(--ring);
+  padding:6px 10px;
+  border-radius:999px;
+}
+
+.card .actions{
+  margin-top:auto;
+  display:flex;
+  gap:10px;
+  padding:12px 14px;
+  border-top:1px solid var(--ring);
+}
+
+.card .actions a{
+  flex:1;
+  text-align:center;
+  text-decoration:none;
+  color:var(--txt);
+  border:1px solid var(--ring);
+  padding:10px 12px;
+  border-radius:10px;
+}
+
+
+/* ==========================================================================
+   9) FILTER CHIPS
+   --------------------------------------------------------------------------
+   - Filter bar above the projects grid
+   ========================================================================== */
+
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:10px 0 18px;
+}
+
+.filters button{
+  border:1px solid var(--ring);
+  background:var(--bg-soft);
+  color:var(--muted);
+  padding:8px 12px;
+  border-radius:999px;
+  cursor:pointer;
+}
+
 .filters button.active{
-  color:var(--txt); outline:2px solid color-mix(in oklab, var(--acc), transparent 30%); border-color:color-mix(in oklab, var(--acc), transparent 50%);
+  color:var(--txt);
+  outline:2px solid color-mix(in oklab, var(--acc), transparent 30%);
+  border-color:color-mix(in oklab, var(--acc), transparent 50%);
 }
 
-.about{ display:grid; grid-template-columns: 1fr 1fr; gap:18px }
-.list{ display:grid; gap:8px }
-.list li{ background:var(--card); border:1px solid var(--ring); padding:12px 14px; border-radius:14px; list-style:none }
 
-footer{ padding:26px 0 60px; color:var(--muted); border-top:1px solid var(--ring) }
-.cta{ display:flex; gap:10px; flex-wrap:wrap }
-
-.sr-only{ position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); border:0 }
-
-@media (max-width: 900px){
-  .hero{ grid-template-columns: 1fr }
-  .card{ grid-column: span 6 }
-  .about{ grid-template-columns:1fr }
-}
-@media (max-width: 640px){
-  .card{ grid-column: span 12 }
-}
+/* ==========================================================================
+   10) ABOUT & LISTS
+   --------------------------------------------------------------------------
+   - Two-column grid with a styled list
+   ========================================
