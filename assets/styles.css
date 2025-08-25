@@ -125,7 +125,7 @@ nav{
   margin-left:18px;
 }
 
-.links a:last-child {
+.links a:last-of-type {
   margin-right: 18px; /* adds right spacing only on the last link */
 }
 
