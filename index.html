@@ -4,83 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio • Alexandre Babeanu</title>
-  <meta name="description" content="A fast, single‑file portfolio to showcase projects, skills, and contact info." />
+  <meta name="description" content="A fast, single-file portfolio to showcase projects, skills, and contact info." />
   <meta property="og:title" content="Portfolio • Alexandre Babeanu" />
-  <meta property="og:description" content="A fast, single‑file portfolio to showcase projects, skills, and contact info." />
+  <meta property="og:description" content="A fast, single-file portfolio to showcase projects, skills, and contact info." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%230a0a0a'/%3E%3Ctext x='50' y='58' font-size='56' text-anchor='middle' fill='%23fff' font-family='Inter,system-ui,sans-serif'%3E⚡%3C/text%3E%3C/svg%3E" />
-  <style>
-    :root{
-      --bg: #0b0b0c; --bg-soft:#121216; --card:#16171b; --txt:#e7e9ee; --muted:#a2a7b7; --acc:#7c9cff; --ring: #2b2f3a;
-      --shadow: 0 10px 30px rgba(0,0,0,.25), 0 6px 12px rgba(0,0,0,.15);
-    }
-    /* Light theme override for toggle */
-    :root[data-theme='light']{
-      --bg:#fafafa; --bg-soft:#ffffff; --card:#ffffff; --txt:#0b0c10; --muted:#5c6270; --acc:#335cff; --ring:#e8ecf7;
-    }
-    /* Manual light theme (wins when you click the toggle) */
-    :root[data-theme='light']{
-      --bg:#fafafa; --bg-soft:#ffffff; --card:#ffffff; --txt:#0b0c10; --muted:#5c6270; --acc:#335cff; --ring:#e8ecf7;
-    }
-    html[data-theme='light'] body{
-      background-image: radial-gradient(40rem 40rem at 10% -10%, #e8edff 0, transparent 60%),
-                        radial-gradient(30rem 30rem at 110% 0, #ffe9f2 0, transparent 50%);
-    }
 
-    /* Only apply OS preference if no manual theme has been set */
-    @media (prefers-color-scheme: light){
-      :root:not([data-theme]){
-      --bg:#fafafa; --bg-soft:#ffffff; --card:#ffffff; --txt:#0b0c10; --muted:#5c6270; --acc:#335cff; --ring:#e8ecf7;
-    }
-    html:not([data-theme]) body{
-      background-image: radial-gradient(40rem 40rem at 10% -10%, #e8edff 0, transparent 60%),
-                        radial-gradient(30rem 30rem at 110% 0, #ffe9f2 0, transparent 50%);
-    }
-    }
-    *{ box-sizing:border-box }
-    html,body{ height:100% }
-    body{ margin:0; font: 15px/1.6 Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Noto Color Emoji;
-      color:var(--txt); background:var(--bg); }
-    .container{ max-width:1100px; margin:0 auto; padding:24px; }
-    header{ position:sticky; top:0; z-index:10; backdrop-filter: blur(10px); background: color-mix(in oklab, var(--bg), transparent 65%); border-bottom:1px solid var(--ring); }
-    nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0; }
-    .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; }
-    .badge{ width:36px; height:36px; display:grid; place-items:center; background: linear-gradient(135deg, var(--acc), #a58cff); color:white; border-radius:12px; box-shadow: var(--shadow); font-weight:700 }
-    .links a{ color:var(--muted); text-decoration:none; margin-left:18px; }
-    .links a:hover{ color:var(--txt) }
-    .btn{ appearance:none; border:1px solid var(--ring); background:var(--bg-soft); color:var(--txt); padding:10px 14px; border-radius:12px; cursor:pointer; box-shadow:var(--shadow); }
-    .btn:hover{ filter:brightness(1.05) }
-    .hero{ display:grid; grid-template-columns: 1.2fr .8fr; gap:26px; align-items:center; padding:32px 0 10px; }
-    .hero h1{ font-size: clamp(28px, 3.8vw, 44px); line-height:1.15; margin:0 0 10px }
-    .hero p{ color:var(--muted); margin:0 0 18px }
-    .pill{ display:inline-flex; gap:8px; align-items:center; border:1px solid var(--ring); padding:6px 10px; border-radius:999px; color:var(--muted); font-size:12px }
-    .hero-card{ background:var(--card); border:1px solid var(--ring); border-radius:20px; padding:16px; box-shadow:var(--shadow); }
-    .avatar{ width:100%; aspect-ratio: 4/3; background: linear-gradient(135deg, #1f2430, #13151d 60%); border-radius:16px; display:grid; place-items:center; color:#91a2ff; font-size:56px }
-    section{ padding:28px 0 }
-    h2{ margin:0 0 14px; font-size: clamp(20px, 2vw, 26px) }
-    .muted{ color:var(--muted) }
-    .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap:16px }
-    .card{ grid-column: span 4; background:var(--card); border:1px solid var(--ring); border-radius:18px; overflow:hidden; display:flex; flex-direction:column; box-shadow:var(--shadow) }
-    .card img{ width:100%; height:180px; object-fit:cover; background:#0f1117 }
-    .card .body{ padding:12px 14px 16px }
-    .card h3{ margin:6px 0 4px; font-size:18px }
-    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px }
-    .chip{ font-size:12px; color:var(--muted); border:1px solid var(--ring); padding:6px 10px; border-radius:999px }
-    .card .actions{ margin-top:auto; display:flex; gap:10px; padding:12px 14px; border-top:1px solid var(--ring) }
-    .card .actions a{ flex:1; text-align:center; text-decoration:none; color:var(--txt); border:1px solid var(--ring); padding:10px 12px; border-radius:10px }
-    .filters{ display:flex; flex-wrap:wrap; gap:10px; margin:10px 0 18px }
-    .filters button{ border:1px solid var(--ring); background:var(--bg-soft); color:var(--muted); padding:8px 12px; border-radius:999px; cursor:pointer }
-    .filters button.active{ color:var(--txt); outline:2px solid color-mix(in oklab, var(--acc), transparent 30%); border-color:color-mix(in oklab, var(--acc), transparent 50%) }
-    .about{ display:grid; grid-template-columns: 1fr 1fr; gap:18px }
-    .list{ display:grid; gap:8px }
-    .list li{ background:var(--card); border:1px solid var(--ring); padding:12px 14px; border-radius:14px; list-style:none }
-    footer{ padding:26px 0 60px; color:var(--muted); border-top:1px solid var(--ring) }
-    .cta{ display:flex; gap:10px; flex-wrap:wrap }
-    .sr-only{ position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); border:0 }
-    @media (max-width: 900px){ .hero{ grid-template-columns: 1fr } .card{ grid-column: span 6 } .about{ grid-template-columns:1fr } }
-    @media (max-width: 640px){ .card{ grid-column: span 12 } }
-  </style>
+  <link rel="icon" href="assets/favicon.svg" />
+  <link rel="preload" as="style" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/styles.css" />
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -99,12 +32,12 @@
       <nav>
         <a class="brand" href="#top" aria-label="Home">
           <span class="badge">
-            <svg width="20" height="20" viewBox="0 0 64 64" fill="currentColor">
-            <ellipse cx="16" cy="44" rx="6" ry="4"/>
-            <ellipse cx="40" cy="40" rx="6" ry="4"/>
-            <rect x="20" y="12" width="2.5" height="32"/>
-          <rect x="44" y="12" width="2.5" height="28"/>
-          <rect x="20" y="12" width="26.5" height="4" />
+            <svg width="20" height="20" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+              <ellipse cx="16" cy="44" rx="6" ry="4"></ellipse>
+              <ellipse cx="40" cy="40" rx="6" ry="4"></ellipse>
+              <rect x="20" y="12" width="2.5" height="32"></rect>
+              <rect x="44" y="12" width="2.5" height="28"></rect>
+              <rect x="20" y="12" width="26.5" height="4"></rect>
             </svg>
           </span>
           <strong>Alexandre Babeanu</strong>
@@ -125,10 +58,10 @@
         <span class="pill">Availability: <strong style="margin-left:6px">Open for projects</strong></span>
         <h1>Audio Producer & Sound Designer crafting immersive stories for podcasts, film and brands.</h1>
         <p>This portfolio is a streamlined showcase of my audio and creative work. It presents a curated selection of projects, my professional background.</p>
-          <a class="btn" href="#projects">See work ↓</a>
-          <a class="btn" href="#contact">Get in touch</a>
-        </div>
+        <a class="btn" href="#projects">See work ↓</a>
+        <a class="btn" href="#contact">Get in touch</a>
       </div>
+
       <div class="hero-card">
         <div class="avatar" aria-hidden="true">🎧</div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px">
@@ -177,123 +110,15 @@
         <a class="btn" href="https://instagram.com/your" target="_blank" rel="noopener">Instagram</a>
       </div>
     </section>
+
     <footer>
       <div class="container">
-        <small>© <span id="year"></span> Your Name — Built with a single HTML file.</small>
+        <small>© <span id="year"></span> Your Name — Built for speed.</small>
       </div>
     </footer>
   </main>
 
-  <!-- Inline editable project data -->
-  <script id="project-data" type="application/json">
-  {
-    "projects": [
-      {
-        "title": "Documentary Podcast: City of Echoes",
-        "description": "Six‑part investigative series. Direction, edit, sound design, mix.",
-        "image": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1600&auto=format&fit=crop",
-        "tags": ["Podcast", "Sound Design", "Mix"],
-        "links": { "Listen": "#", "Case Study": "#" }
-      },
-      {
-        "title": "Short Film: Between Stations",
-        "description": "Atmos mix and spatialized Foley. Festival selection 2025.",
-        "image": "https://images.unsplash.com/photo-1527672809634-04ed36500acd?q=80&w=1600&auto=format&fit=crop",
-        "tags": ["Film", "Dolby Atmos", "Foley"],
-        "links": { "Trailer": "#" }
-      },
-      {
-        "title": "Branded Series: Quiet Luxury",
-        "description": "Three mini‑docs for a fashion house. VO direction + score supervision.",
-        "image": "https://images.unsplash.com/photo-1520975682031-a4c2e6df44f0?q=80&w=1600&auto=format&fit=crop",
-        "tags": ["Brand", "Direction", "Music Supervision"],
-        "links": { "Reel": "#" }
-      },
-      {
-        "title": "Archive Restoration: Voices of 1944",
-        "description": "Noise repair, spectral edits, and remastering for a museum exhibit.",
-        "image": "https://images.unsplash.com/photo-1485827031228-442e04d7e66f?q=80&w=1600&auto=format&fit=crop",
-        "tags": ["Restoration", "Archive", "Museum"],
-        "links": { "Before/After": "#" }
-      }
-    ]
-  }
-  </script>
-
-  <script>
-    const $ = (q, el=document) => el.querySelector(q);
-    const $$ = (q, el=document) => [...el.querySelectorAll(q)];
-
-    // Year
-    $('#year').textContent = new Date().getFullYear();
-
-    // Theme toggle (restored, with persistence)
-     const themeBtn = document.getElementById('themeToggle');
-
-    // Determine initial theme: saved → OS preference → default dark
-    const saved = localStorage.getItem('theme');
-    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-    const initial = saved || (prefersLight ? 'light' : 'dark');
-
-    document.documentElement.setAttribute('data-theme', initial);
-      if (themeBtn) themeBtn.textContent = initial === 'light' ? '☀️' : '🌙';
-
-    themeBtn?.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme') || 'dark';
-      const next = current === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      themeBtn.textContent = next === 'light' ? '☀️' : '🌙';
-    });
-
-
-    // Render projects
-    const data = JSON.parse($('#project-data').textContent);
-    const cards = $('#cards');
-    const tpl = $('#card-tpl');
-
-    const allTags = new Set();
-    data.projects.forEach(p => p.tags.forEach(t => allTags.add(t)));
-
-    const filters = $('#filters');
-    const mkBtn = (label) => Object.assign(document.createElement('button'), { textContent: label });
-    const filterButtons = ['All', ...allTags].map(tag => {
-      const b = mkBtn(tag);
-      b.addEventListener('click', ()=> applyFilter(tag));
-      filters.appendChild(b);
-      return b;
-    });
-
-    function render(list){
-      cards.innerHTML='';
-      list.forEach(p => {
-        const node = tpl.content.cloneNode(true);
-        const img = node.querySelector('img');
-        img.src = p.image || '';
-        img.alt = p.title + ' cover';
-        node.querySelector('h3').textContent = p.title;
-        node.querySelector('.desc').textContent = p.description;
-        const chips = node.querySelector('.chips');
-        p.tags.forEach(t => {
-          const c = document.createElement('span'); c.className='chip'; c.textContent=t; chips.appendChild(c);
-        });
-        const actions = node.querySelector('.actions');
-        Object.entries(p.links||{}).forEach(([label, href])=>{
-          const a = document.createElement('a'); a.href = href; a.target='_blank'; a.rel='noopener'; a.textContent = label; actions.appendChild(a);
-        });
-        cards.appendChild(node);
-      });
-    }
-
-    function applyFilter(tag){
-      filterButtons.forEach(b=>b.classList.toggle('active', b.textContent===tag));
-      if(tag==='All'){ render(data.projects); return; }
-      render(data.projects.filter(p => p.tags.includes(tag)));
-    }
-
-    // Initialize
-    render(data.projects);
-    filterButtons[0].classList.add('active');
-  </script>
+  <noscript>This site needs JavaScript to render the project cards.</noscript>
+  <script src="assets/script.js" defer></script>
 </body>
 </html>
