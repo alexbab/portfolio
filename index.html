@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Portfolio • Alexandre Babeanu</title>
   <meta name="description" content="A fast, single-file portfolio to showcase projects, skills, and contact info." />
   <meta property="og:title" content="Portfolio • Alexandre Babeanu" />
@@ -14,12 +15,13 @@
   <link rel="preload" as="style" href="assets/styles.css" />
   <link rel="stylesheet" href="assets/styles.css" />
 
+  <!-- Structured data (static; optional to translate) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Your Name",
-    "url": "https://example.com",
+    "name": "Alexandre Babeanu",
+    "url": "https://alexandrebabeanu.com",
     "jobTitle": "Audio Producer & Sound Designer",
     "sameAs": ["https://www.linkedin.com/in/your"],
     "worksFor": { "@type": "Organization", "name": "Studio Invisible" }
@@ -32,50 +34,71 @@
       <nav>
         <a class="brand" href="#top" aria-label="Home">
           <span class="badge">
-            <svg width="20" height="20" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
-              <ellipse cx="16" cy="44" rx="6" ry="4"></ellipse>
-              <ellipse cx="40" cy="40" rx="6" ry="4"></ellipse>
-              <rect x="20" y="12" width="2.5" height="32"></rect>
-              <rect x="44" y="12" width="2.5" height="28"></rect>
-              <rect x="20" y="12" width="26.5" height="4"></rect>
+            <!-- Simple AB mark -->
+            <svg width="20" height="20" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+              <rect width="100" height="100" rx="16"></rect>
+              <text x="50" y="55" font-size="56" font-weight="800" text-anchor="middle" dominant-baseline="middle" fill="#fff">AB</text>
             </svg>
           </span>
           <strong>Alexandre Babeanu</strong>
         </a>
+
         <div class="links">
-          <a href="#projects">Projects</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-          <button class="btn" id="themeToggle" aria-label="Toggle theme">🌙</button>
+          <a href="#projects" data-i18n="nav.projects">Projects</a>
+          <a href="#about" data-i18n="nav.about">About</a>
+          <a href="#contact" data-i18n="nav.contact">Contact</a>
+          <!-- Language toggle replaces theme toggle -->
+          <button class="btn" id="langToggle" aria-label="Toggle language">EN</button>
         </div>
       </nav>
     </div>
   </header>
 
   <main class="container" id="top">
+    <!-- HERO -->
     <section class="hero">
       <div>
-        <span class="pill">Availability: <strong style="margin-left:6px">Open for projects</strong></span>
-        <h1>Audio Producer & Sound Designer crafting immersive stories for podcasts, film and brands.</h1>
-        <p>This portfolio is a streamlined showcase of my audio and creative work. It presents a curated selection of projects, my professional background.</p>
-        <a class="btn" href="#projects">See work ↓</a>
-        <a class="btn" href="#contact">Get in touch</a>
+        <span class="pill">
+          <span data-i18n="hero.availability">Availability:</span>
+          <strong style="margin-left:6px" data-i18n="hero.status">Open for projects</strong>
+        </span>
+
+        <h1 data-i18n="hero.title">
+          Audio Producer & Sound Designer crafting immersive stories for podcasts, film and brands.
+        </h1>
+
+        <p data-i18n="hero.subtitle">
+          This portfolio is a streamlined showcase of my audio and creative work. It presents a curated selection of projects, my professional background.
+        </p>
+
+        <a class="btn" href="#projects" data-i18n="cta.seeWork">See work ↓</a>
+        <a class="btn" href="#contact" data-i18n="cta.contact">Get in touch</a>
       </div>
 
       <div class="hero-card">
         <div class="avatar" aria-hidden="true">🎧</div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px">
-          <div class="list"><div class="pill">Pro Tools • Resolve</div><div class="pill">Dolby Atmos</div></div>
-          <div class="list"><div class="pill">Whisper • Speechmatics</div><div class="pill">Sound Design</div></div>
+          <div class="list">
+            <div class="pill">Pro Tools • Resolve</div>
+            <div class="pill">Dolby Atmos</div>
+          </div>
+          <div class="list">
+            <div class="pill">Whisper • Speechmatics</div>
+            <div class="pill" data-i18n="hero.skill.soundDesign">Sound Design</div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects">
-      <h2>Featured Projects</h2>
-      <p class="muted">Filter by tag to jump to what matters.</p>
+      <h2 data-i18n="sections.projects">Featured Projects</h2>
+      <p class="muted" data-i18n="projects.filterHint">Filter by tag to jump to what matters.</p>
+
       <div class="filters" id="filters"></div>
       <div class="grid" id="cards"></div>
+
+      <!-- Card template -->
       <template id="card-tpl">
         <article class="card">
           <img alt="Project cover" loading="lazy" />
@@ -89,36 +112,51 @@
       </template>
     </section>
 
+    <!-- ABOUT -->
     <section id="about">
-      <h2>About</h2>
+      <h2 data-i18n="sections.about">About</h2>
       <div class="about">
-        <p>I'm <strong>Your Name</strong>, a radio director and producer based in Paris. I help authors and brands shape compelling audio with a focus on narrative clarity and elegant sound. Previously: <em>Studio Invisible</em>, independent films, and cultural podcasts. I love clean workflows and fast iteration.</p>
+        <p>
+          <span data-i18n="about.introPrefix">I'm</span>
+          <strong data-i18n="about.name">Alexandre Babeanu</strong>,
+          <span data-i18n="about.introSuffix">
+            a radio director and producer based in Paris. I help authors and brands shape compelling audio with a focus on narrative clarity and elegant sound. Previously: Studio Invisible, independent films, and cultural podcasts. I love clean workflows and fast iteration.
+          </span>
+        </p>
         <ul class="list">
-          <li>🏆 Creator of “Le Prix Littéraire de la Passion”</li>
-          <li>🛠 Tools: Pro Tools, Resolve, Python, n8n</li>
-          <li>🌍 Languages: FR / EN</li>
+          <li data-i18n="about.award">🏆 Creator of “Le Prix Littéraire de la Passion”</li>
+          <li data-i18n="about.tools">🛠 Tools: Pro Tools, Resolve, Python, n8n</li>
+          <li data-i18n="about.langs">🌍 Languages: FR / EN</li>
         </ul>
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact">
-      <h2>Contact</h2>
-      <p class="muted">Prefer email? That works. DMs open as well.</p>
+      <h2 data-i18n="sections.contact">Contact</h2>
+      <p class="muted" data-i18n="contact.hint">Prefer email? That works. DMs open as well.</p>
       <div class="cta">
-        <a class="btn" href="mailto:you@domain.com">Email</a>
-        <a class="btn" href="https://www.linkedin.com/in/your" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="https://instagram.com/your" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn" href="mailto:you@domain.com" data-i18n="contact.emailBtn">Email</a>
+        <a class="btn" href="https://www.linkedin.com/in/your" target="_blank" rel="noopener" data-i18n="contact.linkedinBtn">LinkedIn</a>
+        <a class="btn" href="https://instagram.com/your" target="_blank" rel="noopener" data-i18n="contact.instagramBtn">Instagram</a>
       </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
       <div class="container">
-        <small>© <span id="year"></span> Your Name — Built for speed.</small>
+        <small>
+          © <span id="year"></span>
+          <span data-i18n="footer.name">Alexandre Babeanu</span>
+          — <span data-i18n="footer.tag">Built for speed.</span>
+        </small>
       </div>
     </footer>
   </main>
 
-  <noscript>This site needs JavaScript to render the project cards.</noscript>
+  <noscript data-i18n="noscript">This site needs JavaScript to render the project cards.</noscript>
+
+  <!-- i18n-enabled script (replaces the theme logic) -->
   <script src="assets/script.js" defer></script>
 </body>
 </html>
