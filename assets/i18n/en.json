@@ -1,0 +1,37 @@
+{
+  "nav.projects": "Projects",
+  "nav.about": "About",
+  "nav.contact": "Contact",
+
+  "hero.availability": "Availability:",
+  "hero.status": "Open for projects",
+  "hero.title": "Audio Producer & Sound Designer crafting immersive stories for podcasts, film and brands.",
+  "hero.subtitle": "This portfolio is a streamlined showcase of my audio and creative work. It presents a curated selection of projects, my professional background.",
+  "hero.skill.soundDesign": "Sound Design",
+
+  "cta.seeWork": "See work ↓",
+  "cta.contact": "Get in touch",
+
+  "sections.projects": "Featured Projects",
+  "projects.filterHint": "Filter by tag to jump to what matters.",
+
+  "sections.about": "About",
+  "about.introPrefix": "I'm",
+  "about.name": "Alexandre Babeanu",
+  "about.introSuffix": "a radio director and producer based in Paris. I help authors and brands shape compelling audio with a focus on narrative clarity and elegant sound. Previously: Studio Invisible, independent films, and cultural podcasts. I love clean workflows and fast iteration.",
+  "about.award": "🏆 Creator of “Le Prix Littéraire de la Passion”",
+  "about.tools": "🛠 Tools: Pro Tools, Resolve, Python, n8n",
+  "about.langs": "🌍 Languages: FR / EN",
+
+  "sections.contact": "Contact",
+  "contact.hint": "Prefer email? That works. DMs open as well.",
+  "contact.emailBtn": "Email",
+  "contact.linkedinBtn": "LinkedIn",
+  "contact.instagramBtn": "Instagram",
+
+  "footer.name": "Alexandre Babeanu",
+  "footer.tag": "Built for speed.",
+
+  "filters.all": "All",
+  "noscript": "This site needs JavaScript to render the project cards."
+}
