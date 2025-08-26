@@ -41,12 +41,30 @@
        "date": "2025-05-05"
     },
      {
-      "title": "À vous de voir: L'envol de Violette'",
+      "title": "À vous de voir: L'envol de Violette",
       "description": "Mixing of a documentary for France 5's TV show 'À vous de voir' ",
       "image": "assets/project-images/avdv-envol-violette.jpg",
       "tags": ["Documentary", "TV", "Mix"],
       "links": { "View": "https://www.france.tv/france-5/a-vous-de-voir/6945919-l-envol-de-violette.html"},
       "date": "2025-03-03"
+    },
+     {
+      "title": "Dior Beauty: Lip glow",
+      "description": "Mix and sound design for Dior beauty",
+      "image": "assets/project-images/dior-lip-glow.jpg",
+      "tags": ["Brand", "Mix", "Sound design", "Ai reconstruction"],
+      "links": { "View": "https://www.instagram.com/p/DFiA94ftC8z/" },
+      "date": "2025-03-05"
+    },
+    {
+      "title": "Bouygues: Story of a connected company",
+      "description": "Mix for Bouygues's series featuring Ceercle brand ",
+      "image": "assets/project-images/dior-lip-glow.jpg",
+      "tags": ["Brand", "Mix"],
+      "links": { "View": "https://www.youtube.com/watch?v=mGS-KzzVstI" },
+      "date": "2025-06-020"
     }
+
+
   ]
 }
