@@ -25,11 +25,19 @@
       "date": "2025-07-07"
     },
     {
-      "title": "Après Auschwitz: La memoire en action",
+      "title": "Après Auschwitz: La mémoire en action",
       "description": "Production, editing, sound design and music composition, for the Union of the Auschwitz deportees. 4 episode series about the life of deportees after Auschwitz. Broadcasted on The french national radio website.  ",
       "image": "assets/project-images/Apres_Auschwitz.webp",
       "tags": ["Producer", "Music composer", "Podcast"],
       "links": { "Listen": "https://www.radiofrance.fr/savoirs-plus/podcasts/apres-auschwitz-la-memoire-en-action/se-rassembler-3701937" },
+       "date": "2025-05-05"
+    },
+    {
+      "title": "How the nazis photographed their warcrimes. Auschwitz 1944",
+      "description": "Sound design and mixing for a sound installation at the Shoah's memorial exhibition curated by Natasha Nisic",
+      "image": "assets/project-images/album_Auschwitz.jpg",
+      "tags": ["Mix", "Sound design", "Exhibition"],
+      "links": { "About": "https://expo-photos-auschwitz.memorialdelashoah.org/exposition.html" },
        "date": "2025-05-05"
     }
   ]
