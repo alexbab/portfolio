@@ -109,6 +109,10 @@ function render(list){
     const desc = node.querySelector('.desc');
     if (desc) desc.textContent = p.description || '';
 
+     // Date
+    const dateEl = node.querySelector('.date');
+    if (dateEl && p.date) dateEl.textContent = p.date;
+
     const chips = node.querySelector('.chips');
     if (chips) {
       (p.tags || []).forEach(t => {
