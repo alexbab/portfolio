@@ -39,6 +39,14 @@
       "tags": ["Mix", "Sound design", "Exhibition"],
       "links": { "About": "https://expo-photos-auschwitz.memorialdelashoah.org/exposition.html" },
        "date": "2025-05-05"
+    },
+     {
+      "title": "À vous de voir: L'envol de Violette'",
+      "description": "Mixing of a documentary for France 5's TV show 'À vous de voir' ",
+      "image": "assets/project-images/avdv-envol-violette.jpg",
+      "tags": ["Documentary", "TV", "Mix"],
+      "links": { "View": "https://www.france.tv/france-5/a-vous-de-voir/6945919-l-envol-de-violette.html"},
+      "date": "2025-03-03"
     }
   ]
 }
