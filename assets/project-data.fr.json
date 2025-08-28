@@ -1,42 +1,68 @@
 {
   "projects": [
     {
-      "title": "Podcast documentaire : La ville des échos",
-      "description": "Série d'enquête en six épisodes. Réalisation, montage, design sonore, mixage.",
-      "image": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1600&auto=format&fit=crop",
-      "tags": ["Podcast", "Design Sonore", "Mixage"],
-      "links": {
-        "Écouter": "#",
-        "Étude de cas": "#"
-      }
+      "title": "À vous de voir: Le champ des possibles",
+      "description": "Mixage d’un documentaire pour l’émission 'À vous de voir' diffusée sur France 5",
+      "image": "assets/project-images/avdv-fonction-public.jpg",
+      "tags": ["Documentaire", "Télévision", "Mix"],
+      "links": { "Voir": "https://www.france.tv/france-5/a-vous-de-voir/7039408-la-fonction-publique-le-champ-des-possibles.html"},
+      "date": "2025-07-04"
     },
     {
-      "title": "Court métrage : Entre les gares",
-      "description": "Mixage Atmos et Foley spatialisé. Sélection festival 2025.",
-      "image": "https://images.unsplash.com/photo-1527672809634-04ed36500acd?q=80&w=1600&auto=format&fit=crop",
-      "tags": ["Film", "Dolby Atmos", "Foley"],
-      "links": {
-        "Bande-annonce": "#"
-      }
+      "title": "Breillat",
+      "description": "Mixage du documentaire 'Breillat', sélectionné au festival de La Rochelle retraçant la filmographie de la réalisatrice française Catherine Breillat",
+      "image": "assets/project-images/breillat.jpg",
+      "tags": ["Documentaire", "Cinéma", "Mix"],
+      "links": { "À propos": "https://festival-larochelle.org/film/breillat/" },
+      "date": "2025-06-25"
     },
     {
-      "title": "Série de marque : Quiet Luxury",
-      "description": "Trois mini-docs pour une maison de mode. Direction voix off + supervision musicale.",
-      "image": "https://images.unsplash.com/photo-1520975682031-a4c2e6df44f0?q=80&w=1600&auto=format&fit=crop",
-      "tags": ["Marque", "Direction", "Supervision Musicale"],
-      "links": {
-        "Reel": "#"
-      }
+      "title": "Dior Beauty: Portofino X Alicia Jasmin",
+      "description": "Mixage et sound design pour Dior Beauty",
+      "image": "assets/project-images/Dior-Portofino.jpg",
+      "tags": ["Marque", "Mix", "Sound design"],
+      "links": { "Voir": "https://www.instagram.com/p/DL0bMeVt3eL/" },
+      "date": "2025-07-07"
     },
     {
-      "title": "Restauration d'archives : Voix de 1944",
-      "description": "Réduction de bruit, montage spectral et remasterisation pour une exposition de musée.",
-      "image": "https://images.unsplash.com/photo-1485827031228-442e04d7e66f?q=80&w=1600&auto=format&fit=crop",
-      "tags": ["Restauration", "Archives", "Musée"],
-      "links": {
-        "Avant/Après": "#"
-      }
+      "title": "Après Auschwitz: La mémoire en action",
+      "description": "Production, montage, sound design et composition musicale pour l’Union des déportés d’Auschwitz. Série de 4 épisodes sur la vie des déportés après Auschwitz. Diffusée sur le site de la radio nationale française.",
+      "image": "assets/project-images/Apres_Auschwitz.webp",
+      "tags": ["Production", "Composition", "Podcast"],
+      "links": { "Écouter": "https://www.radiofrance.fr/savoirs-plus/podcasts/apres-auschwitz-la-memoire-en-action/se-rassembler-3701937" },
+      "date": "2025-05-05"
+    },
+    {
+      "title": "Comment les Nazis ont photographié leur crimes. Auschwitz 1944",
+      "description": "Sound design et mixage pour une installation sonore de l’exposition du Mémorial de la Shoah, conçue par Natasha Nisic",
+      "image": "assets/project-images/album_Auschwitz.jpg",
+      "tags": ["Mix", "Sound design", "Exposition"],
+      "links": { "À propos": "https://expo-photos-auschwitz.memorialdelashoah.org/exposition.html" },
+      "date": "2025-05-05"
+    },
+    {
+      "title": "À vous de voir: L'envol de Violette",
+      "description": "Mixage d’un documentaire pour l’émission 'À vous de voir' diffusée sur France 5",
+      "image": "assets/project-images/avdv-envol-violette.jpg",
+      "tags": ["Documentaire", "Télévision", "Mix"],
+      "links": { "Voir": "https://www.france.tv/france-5/a-vous-de-voir/6945919-l-envol-de-violette.html"},
+      "date": "2025-03-03"
+    },
+    {
+      "title": "Dior Beauty: Lip glow",
+      "description": "Mixage et sound design pour Dior Beauty",
+      "image": "assets/project-images/dior-lip-glow.jpg",
+      "tags": ["Marque", "Mix", "Sound design", "IA"],
+      "links": { "Voir": "https://www.instagram.com/p/DFiA94ftC8z/" },
+      "date": "2025-03-05"
+    },
+    {
+      "title": "Bouygues: Histoires de PME connectées",
+      "description": "Mixage pour la série de Bouygues mettant en avant la marque Ceercle",
+      "image": "assets/project-images/bouygues-pme.jpg",
+      "tags": ["Marque", "Mix"],
+      "links": { "Voir": "https://www.youtube.com/watch?v=mGS-KzzVstI" },
+      "date": "2025-06-020"
     }
   ]
 }
-

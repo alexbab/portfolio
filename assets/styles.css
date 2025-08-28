@@ -73,6 +73,10 @@ body{
   background:var(--bg);
 }
 
+img, picture, video, canvas {
+  display: block;
+  max-width: 100%;
+}
 
 /* ==========================================================================
    3) LAYOUT CONTAINERS
@@ -206,25 +210,25 @@ nav{
   box-shadow:var(--shadow);
 }
 
-.avatar {
+.avatar{
+  position: relative;
   width: 100%;
-  aspect-ratio: 3.4/3;
+  aspect-ratio: 3.4 / 3;    /* controls the box height from width */
   background: linear-gradient(135deg, #1f2430, #13151d 60%);
   border-radius: 16px;
-  overflow: hidden; /* ensures corners stay rounded */
-  display: grid;
-  place-items: center;
+  overflow: hidden;
+  display: block;           /* remove grid centering */
 }
 
-.avatar img {
-position: relative;
-  top: -65px;  /* negative = move up, positive = move down */
+/* Replace the current .avatar img rules entirely */
+.avatar img{
+  position: absolute;
+  inset: 0;                 /* top/right/bottom/left: 0 */
   width: 100%;
   height: 100%;
-  object-fit: cover;  /* crop image to fill area */
-  display: block;
+  object-fit: cover;        /* fill the box without distortion */
+  object-position: center 25%; /* tweak “framing” instead of using top:-65px */
 }
-
 
 /* ==========================================================================
    7) TYPOGRAPHY & UTILITIES
@@ -267,12 +271,12 @@ h2{
 }
 
 .card img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  background:#0f1117;
+  width: 100%;
+  aspect-ratio: 16 / 9;     /* fixed ratio */
+  object-fit: cover;        /* crop to fill */
+  object-position: center;  /* consistent framing */
+  display: block;
 }
-
 .card .body{ padding:12px 14px 16px }
 
 .card h3{
@@ -391,6 +395,7 @@ h2{
 }
 
 .list li{
+  list-style:none;
   position:relative;
   margin:0;
   padding:6px 0 6px 18px;
@@ -403,7 +408,6 @@ h2{
 }
 
 .list li::before{
-  content:"•";
   position:absolute;
   left:0;
   top:7px;
@@ -488,7 +492,6 @@ footer small{
 /* Large tablets / small laptops */
 @media (max-width: 1100px){
   .container{ max-width: 960px; padding:22px }
-  .card img{ height:170px }
 }
 
 /* Tablets */
@@ -504,7 +507,6 @@ footer small{
   }
   .hero-card{ order:2 }
   .hero > div:first-child{ order:1 }
-  .avatar{ aspect-ratio: 16/9 }
 
   .about{
     grid-template-columns: 1fr;   /* stack about */
@@ -516,7 +518,6 @@ footer small{
     gap:16px;
   }
   .card{ grid-column:auto }
-  .card img{ height:160px }
   .card .actions a{ padding:10px }
 }
 
@@ -529,8 +530,6 @@ footer small{
   .hero h1{ font-size: clamp(24px, 6.2vw, 34px) }
   .hero p{ font-size:14px }
 
-  .avatar img{ top:-40px }
-  .card img{ height:150px }
 
   .card .actions{ gap:8px }
   .filters{ gap:8px }
@@ -552,7 +551,6 @@ footer small{
   .grid{ grid-template-columns: 1fr }
   .card{ border-radius:16px }
   .card .body{ padding:12px }
-  .card img{ height:140px }
 
   .card .actions{ flex-direction:column }
   .card .actions a{ width:100% }
