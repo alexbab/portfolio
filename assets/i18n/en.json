@@ -19,8 +19,7 @@
   "about.introPrefix": "I'm",
   "about.name": "Alexandre Babeanu",
   "about.introSuffix": "a radio director and producer based in Paris. I help authors and brands shape compelling audio with a focus on narrative clarity and elegant sound. Previously: Studio Invisible, independent films, and cultural podcasts. I love clean workflows and fast iteration.",
-  "about.award": "🏆 Creator of “Le Prix Littéraire de la Passion”",
-  "about.tools": "🛠 Tools: Pro Tools, Resolve, Python, n8n",
+  "about.tools": "🛠 Tools: Pro Tools, Whisper, eleven labs, Python, n8n",
   "about.langs": "🌍 Languages: FR / EN",
 
   "sections.contact": "Contact",
