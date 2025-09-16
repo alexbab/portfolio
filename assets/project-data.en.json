@@ -63,6 +63,14 @@
       "tags": ["Brand", "Mix"],
       "links": { "View": "https://www.youtube.com/watch?v=mGS-KzzVstI" },
       "date": "2025-06-020"
+    },
+    {
+      "title": "La nuit des loups de Thomas Cortese",
+      "description": "Mix and sound design in atmos for This short film",
+      "image": "assets/project-images/la-nuit-des-loups.jpg",
+      "tags": ["Cinema", "Mix", "Sound design"],
+      "links": { "View": "https://www.youtube.com/watch?v=UdYCaDSGMeQ" },
+      "date": "2025-06-020"
     }
   ]
 }
