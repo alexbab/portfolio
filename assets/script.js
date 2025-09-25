@@ -121,14 +121,25 @@ function render(list){
       });
     }
 
+    // Tags
     const chips = node.querySelector('.chips');
     if (chips) {
+      // First add roles (different class for styling if you want)
+      (p.roles || []).forEach(r => {
+        const c = document.createElement('span');
+        c.className = 'chip role'; // <- you can style .role differently in CSS
+        c.textContent = r;
+        chips.appendChild(c);
+      });
+
+      // Then add tags
       (p.tags || []).forEach(t => {
         const c = document.createElement('span');
         c.className = 'chip';
         c.textContent = t;
         chips.appendChild(c);
       });
+
     }
 
     const actions = node.querySelector('.actions');

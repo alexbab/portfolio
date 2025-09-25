@@ -4,7 +4,8 @@
       "title": "À vous de voir: Le champ des possibles",
       "description": "Mixage d’un documentaire pour l’émission 'À vous de voir' diffusée sur France 5",
       "image": "assets/project-images/avdv-fonction-public.jpg",
-      "tags": ["Documentaire", "Télévision", "Mix"],
+      "roles":["Mixeur"],
+      "tags": ["Télévision"],
       "links": { "Voir": "https://www.france.tv/france-5/a-vous-de-voir/7039408-la-fonction-publique-le-champ-des-possibles.html"},
       "date": "2025-07-04"
     },
@@ -12,7 +13,8 @@
       "title": "Breillat",
       "description": "Mixage du documentaire 'Breillat', sélectionné au festival de La Rochelle retraçant la filmographie de la réalisatrice française Catherine Breillat",
       "image": "assets/project-images/breillat.jpg",
-      "tags": ["Documentaire", "Cinéma", "Mix"],
+      "roles":["Mixeur", "Ingénieur du son"],
+      "tags": ["Cinéma"],
       "links": { "À propos": "https://festival-larochelle.org/film/breillat/" },
       "date": "2025-06-25"
     },
@@ -20,15 +22,17 @@
       "title": "Dior Beauty: Portofino X Alicia Jasmin",
       "description": "Mixage et sound design pour Dior Beauty",
       "image": "assets/project-images/Dior-Portofino.jpg",
-      "tags": ["Marque", "Mix", "Sound design"],
+      "roles":["Mixeur", "Sound design"],
+      "tags": ["Brand content"],
       "links": { "Voir": "https://www.instagram.com/p/DL0bMeVt3eL/" },
       "date": "2025-07-07"
     },
     {
       "title": "Après Auschwitz: La mémoire en action",
-      "description": "Production, montage, sound design et composition musicale pour l’Union des déportés d’Auschwitz. Série de 4 épisodes sur la vie des déportés après Auschwitz. Diffusée sur le site de la radio nationale française.",
+      "description": "Une série de podcast pour l’Union des déportés d’Auschwitz. Série de 4 épisodes sur la vie des déportés après Auschwitz. Diffusée sur le site de la radio nationale française.",
       "image": "assets/project-images/Apres_Auschwitz.webp",
-      "tags": ["Production", "Composition", "Podcast"],
+      "roles":["Producteur","Compositeur","Réalisateur"],
+      "tags": ["Podcast"],
       "links": { "Écouter": "https://www.radiofrance.fr/savoirs-plus/podcasts/apres-auschwitz-la-memoire-en-action/se-rassembler-3701937" },
       "date": "2025-05-05"
     },
@@ -36,7 +40,8 @@
       "title": "Comment les Nazis ont photographié leur crimes. Auschwitz 1944",
       "description": "Sound design et mixage pour une installation sonore de l’exposition du Mémorial de la Shoah, conçue par Natasha Nisic",
       "image": "assets/project-images/album_Auschwitz.jpg",
-      "tags": ["Mix", "Sound design", "Exposition"],
+      "roles":["Mixeur","Sound design"],
+      "tags": ["Exposition"],
       "links": { "À propos": "https://expo-photos-auschwitz.memorialdelashoah.org/exposition.html" },
       "date": "2025-05-05"
     },
@@ -44,7 +49,8 @@
       "title": "À vous de voir: L'envol de Violette",
       "description": "Mixage d’un documentaire pour l’émission 'À vous de voir' diffusée sur France 5",
       "image": "assets/project-images/avdv-envol-violette.jpg",
-      "tags": ["Documentaire", "Télévision", "Mix"],
+      "roles":["Mixeur"],
+      "tags": ["Télévision"],
       "links": { "Voir": "https://www.france.tv/france-5/a-vous-de-voir/6945919-l-envol-de-violette.html"},
       "date": "2025-03-03"
     },
@@ -52,7 +58,8 @@
       "title": "Dior Beauty: Lip glow",
       "description": "Mixage et sound design pour Dior Beauty",
       "image": "assets/project-images/dior-lip-glow.jpg",
-      "tags": ["Marque", "Mix", "Sound design", "IA"],
+      "roles":["Mixeur", "Sound design", "IA voice creation"],
+      "tags": ["Brand content"],
       "links": { "Voir": "https://www.instagram.com/p/DFiA94ftC8z/" },
       "date": "2025-03-05"
     },
@@ -60,17 +67,37 @@
       "title": "Bouygues: Histoires de PME connectées",
       "description": "Mixage pour la série de Bouygues mettant en avant la marque Ceercle",
       "image": "assets/project-images/bouygues-pme.jpg",
-      "tags": ["Marque", "Mix"],
+      "roles":["Mixeur"],
+      "tags": ["Brand content"],
       "links": { "Voir": "https://www.youtube.com/watch?v=mGS-KzzVstI" },
       "date": "2025-06-20"
     },
     {
-    "title": "La nuit des loups de Thomas Cortese",
-    "description": "Mix et sound design en Atmos pour ce court-métrage",
-    "image": "assets/project-images/la-nuit-des-loups.jpg",
-    "tags": ["Cinéma", "Mix", "Sound design"],
-    "links": { "Voir": "https://www.youtube.com/watch?v=UdYCaDSGMeQ" },
-    "date": "2025-09-16"
+      "title": "La nuit des loups de Thomas Cortese",
+      "description": "Mix et sound design en Atmos pour ce court-métrage",
+      "image": "assets/project-images/la-nuit-des-loups.jpg",
+      "roles":["Mixeur", "Sound design", "Composition"],
+      "tags": ["Cinéma"],
+      "links": { "Voir": "https://www.youtube.com/watch?v=UdYCaDSGMeQ" },
+      "date": "2025-09-16"
+      },
+    {
+      "title": "Tu ne te tairas point",
+      "description": "Une série de podcasts de Lila Berdugo et Salomé Parent-Rachdi produite par Paradiso",
+      "image": "assets/project-images/tu-ne-te-tairas-point.jpg",
+      "roles":["Réalisation", "Sound design"],
+      "tags": ["Podcast"],
+      "links": { "Voir": "https://podcasts.apple.com/nz/podcast/tu-ne-te-tairas-point-1-d%C3%A9borah/id1575556046?i=1000605242824" },
+      "date": "2023-03-20"
+    },
+    {
+      "title": "La voix des témoins",
+      "description": "Une série de podcasts de Léa Veinstein produite par le mémorial de la Shoah",
+      "image": "assets/project-images/la-voix-des-temoins.jpg",
+      "roles":["Réalisation", "Sound design"],
+      "tags": ["Podcast"],
+      "links": { "Voir": "https://podcast.ausha.co/la-voix-des-temoins" },
+      "date": "2021-05-26"
     }
   ]
 }
